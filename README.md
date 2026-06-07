@@ -115,21 +115,7 @@ src/
 
 ---
 
-## 🚀 Getting Started
+## 🚀 Live Access
 
-### Installation
-```bash
-npm install
-```
-
-### Run Development Server
-```bash
-npm run dev
-```
-Open [http://localhost:5173/RouteIQ/](http://localhost:5173/RouteIQ/) in your browser.
-
-### Build and Deploy to GitHub Pages
-```bash
-npm run deploy
-```
-This script compiles the production build and pushes the assets to the `gh-pages` branch on your remote repository.
+The application is compiled, optimized, and hosted live on GitHub Pages. You can run and explore the platform directly at:
+👉 **[vernan06.github.io/RouteIQ](https://vernan06.github.io/RouteIQ/)**
