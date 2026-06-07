@@ -1,107 +1,38 @@
 # RouteIQ — Intelligent Operations Platform
 
-RouteIQ is a professional-grade logistics, municipal engineering, and urban operations management web application. Structured as a Vite-based React single-page application (SPA), it operates fully in-browser with zero external backend dependencies. All data, graph visualizations, heap trees, and dynamic programming matrices are calculated and animated in real-time.
+RouteIQ is a professional-grade logistics, municipal engineering, and urban operations management web application. It operates fully in-browser with zero external backend dependencies. All data, graph visualizations, heap trees, and dynamic programming matrices are calculated and animated in real-time.
 
-The platform is designed around the metropolitan context of Bengaluru (Bangalore), using real-world municipal problems (grid layout, road network routing, water and electrical infrastructures, and ticketing queues) to demonstrate core computer science algorithms in a production-ready SaaS interface.
-
----
-
-## 🎨 Design System
-
-RouteIQ uses a curated, premium dark theme layout:
-- **Base Background**: `#080c18` (deep navy-black)
-- **Sidebar Background**: `#0c1020` (slate-dark navy)
-- **Card Background**: `#0f1628` (solid card navy)
-- **Borders**: `rgba(255, 255, 255, 0.07)` (applied as `0.5px` borders to all panels)
-- **Primary Accent**: `#3b82f6` (blue)
-- **Text Hierarchy**: 
-  - Primary: `#e2e8f0`
-  - Secondary: `#64748b`
-  - Muted: `#334155`
-- **Typography**: Inter & JetBrains Mono (for logs/terminal consoles) from Google Fonts.
-- **Module Accent Palette**:
-  - 🟣 **Route Optimizer**: `#8b5cf6` (violet)
-  - 🟢 **Fleet Sorter**: `#10b981` (emerald)
-  - 🟡 **Network Mapper**: `#f59e0b` (amber)
-  - 🔴 **Budget Allocator**: `#ef4444` (red)
-  - 🔵 **Scheduler**: `#06b6d4` (cyan)
-  - 💗 **Document Search**: `#ec4899` (pink)
-  - 🟢 **Grid Planner**: `#84cc16` (lime)
-  - 🟠 **Ticket Queue**: `#f97316` (orange)
+![RouteIQ Dashboard Preview](dashboard_preview.png)
 
 ---
 
-## 🧭 Application Modules & Algorithms
+## 🛠️ Technology Stack & Project Scaffold
 
-### 1. Dashboard Overview
-- **Metrics Panel**: High-level KPIs tracking active routes, cost reductions, budget utilizations, and task queues.
-- **Bengaluru Grid Map**: Interactive 8-node force-directed graph. Clicking a source and target node runs the real-world Dijkstra solver to highlight shortest routes in cyan/blue.
-- **Live Operations Feed**: A simulated terminal logging algorithm occurrences automatically every 3 seconds.
+- **Framework**: React 19 + Vite (JavaScript, plain JSX, no TypeScript).
+- **Styling**: TailwindCSS v3 + custom CSS scrollbars and layout resets.
+- **Visualizations**: D3.js (force simulations, layouts, chart render bindings).
+- **Icons**: Lucide React.
 
-### 2. Route Optimizer
-- **Shortest Paths**: Interactive 10-node road grid spanning Bengaluru. Clicking node pairings animates Dijkstra relaxation step-by-step.
-- **All-Pairs Matrices**: Computes the full distance matrix between all localities using the Floyd-Warshall algorithm.
-- **Reachability Closure**: Displays boolean connectivity using Warshall's transitive closure.
-
-### 3. Fleet Sorter
-- **Urgency Arranger**: Visualizes 30 vehicle priority scores (derived from deadline × weight × distance).
-- **Sorting Algorithms**: Step-by-step visualizers comparing **Bubble Sort**, **Selection Sort**, **Insertion Sort**, **Merge Sort**, and **Quick Sort**.
-- **Efficiency Benchmarks**: Draws a D3 bar chart illustrating average operations count. Computes comparisons, swaps, and array accesses in real-time.
-
-### 4. Network Mapper
-- **All-Pairs Heatmap**: Animates Floyd-Warshall cell updates, mapping distances onto a color-interpolated heatmap.
-- **Connectivity Check**: Colors graph nodes by connected component, updating components dynamically as users connect/disconnect edges.
-- **Traversal comparison**: Runs DFS (stack-based) and BFS (queue-based) side-by-side.
-- **Topological Kahn Sort**: Coordinates a dependency DAG of metro construction phases as a linear timeline.
-
-### 5. Budget Allocator
-- **BBMP Project Packing**: Toggles force-include/force-exclude configurations on 10 municipal project proposals with cost and benefit values.
-- **Knapsack Solver**: Animates 0/1 Knapsack cell-by-cell row filling alongside a comparison with Greedy Fractional Knapsack.
-- **Memory Functions**: Isolates top-down memoized recursion branches by blanking out un-evaluated matrix nodes.
-- **Binomial C(10, k)**: Generates Pascal's triangle table showing combinatorics for selecting subsets of projects.
-
-### 6. Scheduler
-- **Weekly Event Grid**: Backtracks event bookings on an $N \times N$ schedule without column/row/diagonal conflicts (N-Queens, $N=4 \text{ to } 8$).
-- **Resource Matching**: Scans a backtracking tree to match 10 invoices with a target grant budget (Subset Sum).
-- **Patrol TSP**: Solves 6 fire station route paths using Branch & Bound search bounding calculations.
-- **Shift Matchmaker**: Assigns 5 workers to 5 shifts with minimal cost, drawing an interactive SVG node-matching diagram.
-
-### 7. Document Search
-- **Substring Scanners**: Slides pattern keywords underneath 800+ characters of civic record reports comparing **Boyer-Moore** (bad character/good suffix rules), **Horspool's**, and **Naive search**.
-- **Presorting Demo**: Simulates linear querying vs alphabet-sorted binary search over 20 municipal keywords.
-
-### 8. Grid Planner
-- **Power Cable Grid**: Evaluates minimum laying costs for residential sectors using **Prim's Spanning Tree (MST)**, rendering the explored cuts in different shades.
-- **Huffman Compression**: Builds bottom-up frequency merge trees from district logs, calculating bits conservation and ratios.
-
-### 9. Ticket Queue
-- **Heap priority queue**: Ingests municipal maintenance tickets (Potholes, sewage, water) every 4 seconds.
-- **Binary Tree Heap**: Renders a max-heap where insertions trigger bubble-ups and serving triggers sift-down animations.
-- **Heapsort Manifest**: Runs the full Heapsort sorting sequence on the active queue.
-
----
-
-## 🛠️ Codebase Structure
-
+### Directory Structure
 ```bash
 src/
   ├── algorithms/                # Pure algorithm engines returning steps arrays
-  │     ├── sorting.js
-  │     ├── graph.js
-  │     ├── dp.js
-  │     ├── backtracking.js
-  │     └── stringMatch.js
+  │     ├── sorting.js           # Bubble, Selection, Insertion, Merge, Quick Sort
+  │     ├── graph.js             # Dijkstra, Floyd-Warshall, Warshall, Prim, DFS, BFS, Kahn
+  │     ├── dp.js                # 0/1 Knapsack, Fractional, Binomial, Huffman Coding
+  │     ├── backtracking.js      # N-Queens, Subset Sum, TSP B&B, Shift Assignment
+  │     └── stringMatch.js       # Boyer-Moore, Horspool, Naive
   ├── components/                # Reusable UI controls, consoles, and graphs
-  │     ├── Sidebar.jsx
-  │     ├── Topbar.jsx
-  │     ├── KPICard.jsx
-  │     ├── AlgoEngineLog.jsx
-  │     ├── NetworkGraph.jsx
-  │     ├── SortBars.jsx
-  │     └── StepControls.jsx
+  │     ├── Sidebar.jsx          # RouteIQ navigation and user metadata
+  │     ├── Topbar.jsx           # Breadcrumbs, clocks, and action buttons
+  │     ├── KPICard.jsx          # Metric cards
+  │     ├── AlgoEngineLog.jsx    # Monospace developer console log
+  │     ├── NetworkGraph.jsx     # SVG graph visualization (D3 coordinates)
+  │     ├── SortBars.jsx         # Urgency sort bars rendering
+  │     └── StepControls.jsx     # Scrubber bars for algorithms
   ├── hooks/                     # Custom hooks
-  │     └── useAlgoEngine.js
-  ├── pages/                     # Core page portals
+  │     └── useAlgoEngine.js     # Animation playback state hooks
+  ├── pages/                     # Page portals
   │     ├── Dashboard.jsx
   │     ├── RouteOptimizer.jsx
   │     ├── FleetSorter.jsx
@@ -112,33 +43,93 @@ src/
   │     ├── GridPlanner.jsx
   │     └── TicketQueue.jsx
   ├── App.jsx                    # Root router layout
-  ├── main.jsx                   # React entrypoint
+  ├── main.jsx                   # React DOM mounting entrypoint
   └── index.css                  # CSS base styling & scrollbars
 ```
 
 ---
 
+## 🧭 Modules & Algorithms in Detail
+
+### 1. Dashboard Overview
+*   **The Problem**: Fleet operators need a unified cockpit tracking daily routes, budget utilization, pending tasks, and real-time infrastructure event notifications.
+*   **Application & Algorithms**:
+    *   **Dijkstra's Pathfinding**: Models the primary Bengaluru road network using 8 localities (Hebbal, Indiranagar, Koramangala, etc.). Clicking a starting point and destination runs a Dijkstra solver, immediately trace-highlighting the shortest path in cyan/blue.
+    *   **Live Events Logger**: Feeds simulated logs every 3 seconds to represent active background tasks (e.g. Heapsort runs, Knapsack allocations) executing across other modules.
+
+### 2. Route Optimizer
+*   **The Problem**: Delivery dispatch vans need to find the shortest delivery routes between 10 key localities in Bengaluru to save fuel and meet courier SLA deadlines.
+*   **Application & Algorithms**:
+    *   **Dijkstra's Algorithm**: Evaluates single-source shortest paths. The custom engine records step-by-step vertex relaxations, coloring visited nodes violet and the active path blue. Displays estimated travel time based on a 40 km/h average speed limit.
+    *   **Floyd-Warshall**: Pre-calculates all-pairs shortest paths to show a static $10 \times 10$ distance matrix below the graph, detailing the shortest distance between any two locations.
+    *   **Warshall's reachability**: Evaluates boolean path connectivity, showing whether a path exists between any two localities.
+
+### 3. Fleet Sorter
+*   **The Problem**: Warehouse operators need to arrange a fleet of 30 loaded vehicles in dispatch priority sequence. The priority score is computed dynamically based on: $\text{Urgency} \times \text{Cargo Weight} \times \text{Route Distance}$.
+*   **Application & Algorithms**:
+    *   **Sort Algorithms**: Compares **Bubble**, **Selection**, **Insertion**, **Merge**, and **Quick Sort** side-by-side using the same unsorted input.
+    *   **Visualizer**: Renders 30 vertical bars colored from green (low priority) to red (high priority). Compares elements (yellow) and swaps them (red), converting sorted sections to teal.
+    *   **Performance Metrics**: Compares comparisons, swaps/shifts, and array accesses. Includes a D3 bar chart displaying the theoretical/average operations count for N=30.
+
+### 4. Network Mapper
+*   **The Problem**: Transport planners need to evaluate connection structures, calculate topological execution timelines for civil construction dependencies, and audit connectivity.
+*   **Application & Algorithms**:
+    *   **Floyd-Warshall (All-Pairs Paths)**: Animates the distance relaxation cell-by-cell. Renders cell updates on a color-interpolated distance heatmap.
+    *   **Warshall's reachability**: Computes the transitive closure. Evaluates and colors independent connected components in the graph. Clicking an edge cycles its weight or disconnects it, updating the components in real-time.
+    *   **DFS / BFS (Traversals)**: Runs DFS (using a stack) and BFS (using a queue) side-by-side from a chosen root.
+    *   **Kahn's Topological Sort**: Schedules metro construction phases by evaluating prerequisite dependency constraints (directed acyclic graph), outputting a chronological timeline.
+
+### 5. Budget Allocator
+*   **The Problem**: The municipal corporation (BBMP) has a fixed capital budget (e.g., ₹100L) and must select from 10 infrastructure projects (Roads, School, Hospital, CCTV, etc.) each having a cost and a benefit score.
+*   **Application & Algorithms**:
+    *   **0/1 Knapsack (Dynamic Programming)**: Fills a DP matrix row-by-row. Animates cell selection and traces backward to highlight the selected projects in green. Support overrides (force-include / force-exclude).
+    *   **Memory Functions**: Implements top-down memoization, graying out/blanking cells that are skipped by the recursion branch.
+    *   **Fractional Knapsack (Greedy)**: Greedy ratio-packing algorithm that divides projects if budget remains, illustrating the efficiency gap between 0/1 and Fractional packing.
+    *   **Pascal's Triangle (Binomial Coefficient)**: Computes the combinatorics of selecting $k$ projects from $10$ candidates ($C(10, k)$) using a Pascal table.
+
+### 6. Scheduler
+*   **The Problem**: City managers need to schedule events at municipal venues without overlaps, solve patrol paths, and assign shifts.
+*   **Application & Algorithms**:
+    *   **N-Queens Backtracking**: Places $N$ events ($N = 4 \text{ to } 8$) in an $N \times N$ calendar grid (Venue vs Time Slot). Animates placement, highlights conflicts in red, and demonstrates backtracking by removing events.
+    *   **Subset Sum**: Evaluates combination subsets of project costs that match a target grant sum.
+    *   **TSP (Branch & Bound)**: Resolves the shortest routing cycle for 6 fire stations. Shows bounding calculations and prunes branches that exceed the current best cost.
+    *   **Assignment Problem**: Matches 5 workers to 5 shifts based on a cost matrix, rendering matching paths.
+
+### 7. Document Search
+*   **The Problem**: Archives managers need to search through large civic record meeting minutes for pattern keywords.
+*   **Application & Algorithms**:
+    *   **Boyer-Moore / Horspool / Naive String Match**: Slides pattern inputs under the document text. Visualizes bad-character and good-suffix table shifts.
+    *   **Query Presorting**: Compares linear scanning against sorted binary search for 20 query terms, measuring search comparison counts.
+
+### 8. Grid Planner
+*   **The Problem**: Utility engineers need to connect residential sectors with minimum cable laying costs and compress log files.
+*   **Application & Algorithms**:
+    *   **Prim's MST**: Finds the minimum spanning tree of a sector grid. Animates crossing edges, outlines explored cuts, and sums running cable laying costs.
+    *   **Huffman Coding**: Compresses transmission logs. Animates priority queue merges from the bottom up, outputting compression ratios and binary codes.
+
+### 9. Ticket Queue
+*   **The Problem**: Municipal ticket intakes (Sewage, Potholes, Water) arrive continuously and must be served in order of priority.
+*   **Application & Algorithms**:
+    *   **Heap Priority Queue**: Ingests tickets every 4 seconds. Visualizes the queue as a binary tree. Animates insert bubble-ups and serving sift-downs.
+    *   **Heapsort**: Performs sorting on the active queue.
+
+---
+
 ## 🚀 Getting Started
 
-### Prerequisites
-Ensure you have **Node.js** (v16+) installed.
-
 ### Installation
-Clone the repository and install dependencies:
 ```bash
 npm install
 ```
 
 ### Run Development Server
-Launch the local Hot-Module-Replacement (HMR) server:
 ```bash
 npm run dev
 ```
-Open [http://localhost:5173](http://localhost:5173) in your browser.
+Open [http://localhost:5173/RouteIQ/](http://localhost:5173/RouteIQ/) in your browser.
 
-### Compile Production Build
-Bundle client files for deployment:
+### Build and Deploy to GitHub Pages
 ```bash
-npm run build
+npm run deploy
 ```
-Compiled assets will be output in `dist/`.
+This script compiles the production build and pushes the assets to the `gh-pages` branch on your remote repository.
